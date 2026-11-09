@@ -1,0 +1,4 @@
+# Optional: local speech recognition (Whisper via CTranslate2). Runs fully offline once the model is cached.
+faster-whisper>=1.1,<2.0
+# faster-whisper 1.2.x calls av.open(metadata_errors=...) which PyAV >= 17 rejects; keep PyAV in the tested range.
+av>=14,<17

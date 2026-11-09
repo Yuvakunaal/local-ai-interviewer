@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>AI Interviewer: one more thing to install</title>
+<link rel="icon" type="image/svg+xml" href="../frontend/public/logo.svg">
+<style>
+  :root { --bg:#f4f5fd; --panel:#fff; --panel2:#f3f4fc; --text:#161a3a; --muted:#5b6183; --line:#e1e4f4; --accent:#4338d8; --bad:#bf3030; --badsoft:#fde8e8; --ok:#0f7a54; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0d1020; --panel:#161a33; --panel2:#1e2342; --text:#e9ebf8; --muted:#9ba1c4; --line:#2a3058; --accent:#bab2ff; --bad:#ff8585; --badsoft:#3b1c25; --ok:#3fcf94; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 28px 16px; background: var(--bg); color: var(--text); font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  main { width: min(720px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 30px 32px 26px; box-shadow: 0 8px 30px rgba(60,66,150,.10); }
+  header { display: flex; gap: 16px; align-items: flex-start; } header img { width: 46px; height: 46px; border-radius: 12px; flex: none; }
+  h1 { margin: 0 0 4px; font-size: 1.55rem; letter-spacing: -.02em; } p { margin: 0; color: var(--muted); } h2 { margin: 24px 0 8px; font-size: .86rem; color: var(--muted); }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 18px; } .tabs button { border: 1px solid var(--line); background: var(--panel2); color: var(--text); border-radius: 99px; padding: 6px 14px; font: inherit; font-size: .86rem; cursor: pointer; }
+  .tabs button[aria-pressed=true] { background: var(--accent); border-color: var(--accent); color: #fff; } @media (prefers-color-scheme: dark) { .tabs button[aria-pressed=true] { color: #0d1020; } }
+  .need { border: 1px solid color-mix(in srgb, var(--bad) 45%, var(--line)); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; }
+  .need .t { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; } .need b { font-size: 1.02rem; } .tag { margin-left: auto; font-size: .78rem; font-weight: 700; color: var(--bad); }
+  .need ol { margin: 10px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; font-size: .92rem; } .need li > span { display: block; color: var(--muted); font-size: .86rem; margin-bottom: 4px; }
+  .cmd { display: flex; align-items: center; gap: 6px; padding: 4px 4px 4px 12px; border: 1px solid var(--line); background: var(--panel2); border-radius: 10px; }
+  code { flex: 1; min-width: 0; overflow-x: auto; white-space: nowrap; font: .86rem ui-monospace, "SF Mono", Menlo, Consolas, monospace; padding: 5px 0; }
+  button.copy { border: 0; background: transparent; color: var(--accent); font: inherit; font-size: .82rem; font-weight: 650; cursor: pointer; padding: 6px 10px; border-radius: 8px; } button.copy:hover { background: var(--panel); }
+  a.btn { display: inline-block; padding: 7px 14px; border-radius: 10px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 650; font-size: .88rem; } @media (prefers-color-scheme: dark) { a.btn { color: #0d1020; } }
+  .after { margin-top: 22px; padding: 14px 16px; border-radius: 14px; background: var(--panel2); border: 1px solid var(--line); } .after code { background: var(--panel); border-radius: 6px; padding: 2px 6px; white-space: normal; }
+  .later { margin-top: 12px; font-size: .88rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<main aria-labelledby="h">
+  <header><img src="../frontend/public/logo.svg" alt="" width="46" height="46"><div><h1 id="h">One more thing before AI Interviewer can start</h1>
+  <p id="intro">Your computer is missing a tool the app is built with. Install it, then run the start command again and the app will open.</p></div></header>
+  <div class="tabs" role="group" aria-label="Your computer"><button data-os="macos">macOS</button><button data-os="windows">Windows</button><button data-os="linux">Linux</button></div>
+  <h2>Needed</h2>
+  <div id="needs"></div>
+  <div class="after" id="after"></div>
+  <p class="later">Next, the app itself will check for <b>Ollama</b> (the program that runs the AI) and help you download the interview model, right in the page, with one click.</p>
+</main>
+<script>
+(function () {
+  var STEPS = {
+    python: { label: "Python 3.10 or newer", why: "runs the app's server",
+      macos: [["Download the installer (pick the newest version)", "https://www.python.org/downloads/"], ["or, with Homebrew", null, "brew install python"]],
+      windows: [["In Command Prompt or PowerShell", null, "winget install Python.Python.3.12"], ["or download it (tick “Add python.exe to PATH” in the installer)", "https://www.python.org/downloads/"]],
+      linux: [["Debian / Ubuntu", null, "sudo apt install python3 python3-venv"], ["Fedora", null, "sudo dnf install python3"]] },
+    node: { label: "Node.js 18 or newer", why: "builds the web page once",
+      macos: [["Download the LTS installer", "https://nodejs.org/"], ["or, with Homebrew", null, "brew install node"]],
+      windows: [["In Command Prompt or PowerShell", null, "winget install OpenJS.NodeJS.LTS"], ["or download the LTS installer", "https://nodejs.org/"]],
+      linux: [["Debian / Ubuntu", null, "sudo apt install nodejs npm"], ["or download the LTS installer", "https://nodejs.org/"]] }
+  };
+  var START = { macos: "./start.sh", linux: "./start.sh", windows: "start.bat" };
+  var need = (new URLSearchParams(location.search).get("need") || "python").split(",").filter(function (k) { return STEPS[k]; });
+  if (!need.length) need = ["python"];
+  var os = /Win/i.test(navigator.platform) ? "windows" : /Mac/i.test(navigator.platform) ? "macos" : "linux";
+  function el(tag, attrs, kids) { var e = document.createElement(tag); for (var k in attrs || {}) { if (k === "text") e.textContent = attrs[k]; else e.setAttribute(k, attrs[k]); } (kids || []).forEach(function (c) { e.appendChild(c); }); return e; }
+  function render() {
+    document.querySelectorAll(".tabs button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.os === os)); });
+    var box = document.getElementById("needs"); box.textContent = "";
+    need.forEach(function (k) {
+      var s = STEPS[k], list = el("ol");
+      s[os].forEach(function (st) {
+        var li = el("li", {}, [el("span", { text: st[0] })]);
+        if (st[1]) li.appendChild(el("a", { class: "btn", href: st[1], target: "_blank", rel: "noopener noreferrer", text: "Open the download page" }));
+        if (st[2]) { var code = el("code", { text: st[2] }), copy = el("button", { type: "button", class: "copy", text: "Copy", "aria-label": "Copy command: " + st[2] });
+          copy.onclick = function () { (navigator.clipboard ? navigator.clipboard.writeText(st[2]) : Promise.reject()).then(function () { copy.textContent = "Copied"; setTimeout(function () { copy.textContent = "Copy"; }, 1500); }, function () { copy.textContent = "Select and copy"; }); };
+          li.appendChild(el("div", { class: "cmd" }, [code, copy])); }
+        list.appendChild(li);
+      });
+      box.appendChild(el("div", { class: "need" }, [el("div", { class: "t" }, [el("b", { text: s.label }), el("span", { class: "muted", text: "(" + s.why + ")" }), el("span", { class: "tag", text: "Needed" })]), list]));
+    });
+    var after = document.getElementById("after"); after.textContent = "";
+    after.appendChild(document.createTextNode("When it is installed, open a new terminal window in the app's folder and run "));
+    after.appendChild(el("code", { text: START[os] }));
+    after.appendChild(document.createTextNode(" again. The app then opens in your browser."));
+  }
+  document.querySelectorAll(".tabs button").forEach(function (b) { b.onclick = function () { os = b.dataset.os; render(); }; });
+  render();
+})();
+</script>
+</body>
+</html>

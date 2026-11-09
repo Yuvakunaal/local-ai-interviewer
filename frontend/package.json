@@ -1,0 +1,33 @@
+{
+  "name": "local-ai-interviewer-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "e2e": "node e2e/basics.mjs",
+    "e2e:full": "node e2e/full-flow.mjs",
+    "e2e:mic": "node e2e/mic.mjs",
+    "e2e:voices": "node e2e/voices-system.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.1.0",
+    "jsdom": "^27.0.0",
+    "puppeteer-core": "^24.43.1",
+    "typescript": "^5.9.0",
+    "vite": "^8.0.0",
+    "vitest": "^5.0.0"
+  }
+}

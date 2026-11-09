@@ -1,0 +1,8 @@
+# Core runtime (pinned to compatible ranges; tested with Python 3.13 on Apple Silicon)
+fastapi>=0.115,<1.0
+uvicorn>=0.32,<1.0
+pydantic>=2.9,<3.0
+httpx>=0.27,<1.0
+python-multipart>=0.0.12,<1.0
+reportlab>=4.2,<5.0
+pypdfium2>=4.30,<6.0       # resume PDFs: text extraction and page rendering for OCR (Apache-2.0/BSD; binary wheels for macOS, Windows, Linux)

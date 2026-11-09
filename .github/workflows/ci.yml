@@ -1,0 +1,69 @@
+# Runs the automated checks on macOS, Windows and Linux for every push and pull request.
+# Everything here is local: Ollama is mocked in the backend tests, so no model is downloaded.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend:
+    name: Backend + launcher tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install backend dependencies
+        run: python -m pip install -r backend/requirements.txt -r backend/requirements-dev.txt
+      - name: Run tests
+        run: python -m pytest backend -q
+
+  frontend:
+    name: Frontend build + unit tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  launcher-smoke:
+    name: Launcher smoke test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # `check` is read-only and exits 1 here because Ollama is not installed on the runner. What matters is that it runs
+      # to the end on this OS and reports on Ollama (a crash would print a traceback instead).
+      - name: manage.py check runs on this OS
+        shell: bash
+        run: |
+          out=$(python scripts/manage.py check || true)
+          echo "$out"
+          echo "$out" | grep -q "Ollama"

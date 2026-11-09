@@ -1,0 +1,25 @@
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+# Node
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+# Local data (interviews, answers, generated audio, backups) - never commit
+data/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+# Runtime
+logs/
+.run/
+.env
+# Models / caches (large files do not belong in the repo)
+*.gguf
+*.safetensors
+*.bin
+.cache/
+.DS_Store
