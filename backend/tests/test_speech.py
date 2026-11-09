@@ -73,6 +73,7 @@ def test_failed_synthesis_is_not_cached(client, fake):
 
 
 def test_transcribe_reports_unavailable_model_without_network(client, monkeypatch):
+    pytest.importorskip("faster_whisper", reason="the optional speech-recognition package (requirements-stt.txt) is not installed")
     st = client.get("/api/speech/stt").json()
     assert st["model"] == "base.en"
     # simulate "package present but model not downloaded" regardless of this machine's cache

@@ -102,7 +102,7 @@ def test_the_cloud_address_exists_in_exactly_one_place_and_is_https():
     def without_help_links(text: str) -> str:        # the setup screen's "install Ollama" documentation links are not the cloud address
         return text.replace("https://ollama.com/download", "").replace("https://ollama.com/install.sh", "")
 
-    hits = [str(f.relative_to(ROOT)) for f in (ROOT / "backend" / "app").rglob("*.py") if "https://ollama.com" in without_help_links(f.read_text(encoding="utf-8"))]
+    hits = [f.relative_to(ROOT).as_posix() for f in (ROOT / "backend" / "app").rglob("*.py") if "https://ollama.com" in without_help_links(f.read_text(encoding="utf-8"))]
     assert hits == ["backend/app/config.py"], hits
 
 
