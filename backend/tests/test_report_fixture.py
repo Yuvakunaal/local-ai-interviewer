@@ -7,9 +7,15 @@ If the report gains or loses a field, this test fails; regenerate the fixture wi
 """
 import json
 import os
+from concurrent.futures import Future
 from pathlib import Path
 
-from conftest import act, add_questions, answer, good_eval, start_interview, state
+from fastapi.testclient import TestClient
+
+from app.deps import build_container
+from app.main import create_app
+from conftest import act, add_questions, answer, good_eval, make_client_for, make_settings, start_interview, state
+from resume_fixtures import profile_reply, text_pdf
 
 FIXTURES = Path(__file__).resolve().parents[2] / "frontend" / "src" / "__tests__" / "fixtures"
 FIXTURE = FIXTURES / "report.json"
@@ -92,7 +98,7 @@ def setup_responses(client, set_id) -> dict:
 def _without_times(x):
     """Timestamps change on every run and mean nothing to the frontend tests."""
     if isinstance(x, dict):
-        return {k: _without_times(v) for k, v in x.items() if k not in ("created_at", "started_at", "updated_at", "completed_at")}
+        return {k: _without_times(v) for k, v in x.items() if k not in ("created_at", "started_at", "updated_at", "completed_at", "last_parsed_at")}
     if isinstance(x, list):
         return [_without_times(v) for v in x]
     return x
@@ -101,6 +107,69 @@ def _without_times(x):
 def test_the_frontend_setup_fixtures_match_the_api(client, set_id):
     got = setup_responses(client, set_id)
     path = FIXTURES / "setup-api.json"
+    if os.environ.get("WRITE_REPORT_FIXTURE") == "1":
+        path.write_text(json.dumps(got, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    fixture = json.loads(path.read_text(encoding="utf-8"))
+    assert keys(fixture, 4) == keys(got, 4), "regenerate the fixtures (see docstring)"
+
+
+class _RunLater:
+    """Keeps background work until run_all(), so the states in between (a resume being read again) can be recorded."""
+
+    def __init__(self):
+        self.jobs = []
+
+    def submit(self, fn, *a, **kw):
+        self.jobs.append((fn, a, kw))
+        return Future()
+
+    def run_all(self):
+        while self.jobs:
+            fn, a, kw = self.jobs.pop(0)
+            fn(*a, **kw)
+
+
+def resume_detail_responses(tmp_path, fake) -> dict:
+    """What the Resume detail page loads and sends: a ready resume, its text and candidate profile, a saved edit, a rename, a save
+    from a stale tab, a re-read in progress and its result, a resume the model could not organise, a delete, and a missing resume."""
+    s = make_settings(tmp_path)
+    later = _RunLater()
+    client = TestClient(create_app(s, build_container(s, ollama=make_client_for(s, fake), executor=later)), base_url="http://127.0.0.1:3000")
+
+    def upload() -> int:
+        rid = client.post("/api/resumes", files={"file": ("jane-cv.pdf", text_pdf(), "application/pdf")}).json()["id"]
+        later.run_all()
+        return rid
+
+    fake.chat_replies = [profile_reply()]
+    rid = upload()
+    url = f"/api/resumes/{rid}"
+    ready = client.get(url).json()
+    out = {"ai": client.get("/api/ai").json(), "ready": ready, "text": client.get(f"{url}/text").json(),
+           "intelligence": client.get(f"{url}/intelligence").json(), "not_found": client.get("/api/resumes/999").json()}
+    edited = dict(ready["profile"], summary="Backend engineer who loves fast APIs.")
+    out["saved"] = client.patch(url, json={"revision": ready["revision"], "profile": edited}).json()
+    out["stale"] = client.patch(url, json={"revision": ready["revision"], "profile": edited}).json()        # the old revision again: 409
+    out["renamed"] = client.patch(url, json={"revision": ready["revision"] + 1, "name": "Backend CV"}).json()
+    out["reparsing"] = client.post(f"{url}/reparse").json()
+    fake.chat_replies = [profile_reply()]
+    later.run_all()
+    out["reparsed"] = client.get(url).json()
+    fake.chat_replies = ["not json"] * 2
+    failed = upload()
+    out["failed"] = client.get(f"/api/resumes/{failed}").json()
+    out["deleted"] = client.delete(f"/api/resumes/{failed}").json()
+    return _without_times(out)
+
+
+def test_the_frontend_resume_detail_fixtures_match_the_api(tmp_path, fake):
+    got = resume_detail_responses(tmp_path, fake)
+    assert got["ready"]["status"] == "ready" and got["saved"]["profile"]["summary"] == "Backend engineer who loves fast APIs."
+    assert got["stale"]["error"]["code"] == "resume_changed" and got["renamed"]["name"] == "Backend CV"
+    assert got["reparsing"]["status"] == "extracting" and got["reparsed"]["status"] == "ready"
+    assert got["failed"]["status"] == "failed" and not got["failed"]["has_profile"] and got["not_found"]["error"]["code"]
+    assert got["intelligence"]["resume_id"] == got["ready"]["id"] and got["intelligence"]["skills"]
+    path = FIXTURES / "resume-detail-api.json"
     if os.environ.get("WRITE_REPORT_FIXTURE") == "1":
         path.write_text(json.dumps(got, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     fixture = json.loads(path.read_text(encoding="utf-8"))

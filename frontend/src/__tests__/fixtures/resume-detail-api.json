@@ -1,0 +1,1250 @@
+{
+ "ai": {
+  "mode": "local",
+  "ready": true,
+  "config": {
+   "mode": "local",
+   "cloud_consent_at": null,
+   "grader_model": "openai/gpt-oss-120b",
+   "fallback_model": "openai/gpt-oss-20b",
+   "use_fallback": true,
+   "conversation_model": "openai/gpt-oss-20b",
+   "fallback_to_local": false,
+   "enforce_budget": true,
+   "daily_budget_usd": 1.0,
+   "total_budget_usd": null,
+   "prices": {
+    "openai/gpt-oss-120b": {
+     "input_per_m": 0.15,
+     "output_per_m": 0.6,
+     "offpeak_input_per_m": null,
+     "offpeak_output_per_m": null
+    },
+    "openai/gpt-oss-20b": {
+     "input_per_m": 0.075,
+     "output_per_m": 0.3,
+     "offpeak_input_per_m": null,
+     "offpeak_output_per_m": null
+    }
+   }
+  },
+  "key": {
+   "set": false,
+   "source": null,
+   "hint": null
+  },
+  "budget": {
+   "enforced": true,
+   "today": {
+    "spent_usd": 0.0,
+    "limit_usd": 1.0,
+    "percent": 0,
+    "reached": false
+   },
+   "total": {
+    "spent_usd": 0.0,
+    "limit_usd": null,
+    "percent": null,
+    "reached": false
+   }
+  },
+  "last_test": null,
+  "local_model": "qwen3.5:4b",
+  "roles": {
+   "grader": "Grades answers, writes the feedback and the report summary.",
+   "fallback": "Takes over automatically if the grader fails.",
+   "conversation": "Writes follow-up questions and cleans up voice transcripts."
+  },
+  "provider": {
+   "name": "Groq",
+   "keys_url": "https://console.groq.com/keys",
+   "data_url": "https://console.groq.com/docs/your-data",
+   "custom_host": null,
+   "retention": "Groq says it does not keep your text by default, but may log requests for up to 30 days to fix reliability problems or investigate abuse. Its servers are in the United States."
+  },
+  "sent_to_cloud": [
+   "Your interview questions",
+   "Your answers (typed, or the text of what you said)",
+   "Your expected answers / rubrics"
+  ],
+  "stays_local": [
+   "Your voice recordings and the speech-to-text",
+   "The spoken questions (voice)",
+   "Your database, reports and settings"
+  ]
+ },
+ "ready": {
+  "id": 1,
+  "name": "Resume 1",
+  "original_filename": "jane-cv.pdf",
+  "size_bytes": 2128,
+  "pages": 1,
+  "status": "ready",
+  "stage_detail": null,
+  "error_code": null,
+  "error_message": null,
+  "extraction_method": "text",
+  "consent_cloud": null,
+  "revision": 1,
+  "has_profile": true,
+  "skills_preview": [
+   "Python",
+   "Go",
+   "SQL",
+   "AWS",
+   "Kubernetes",
+   "Terraform"
+  ],
+  "warnings": 0,
+  "profile": {
+   "contact": {
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "phone": "+1 555 0100",
+    "location": "Berlin",
+    "links": []
+   },
+   "summary": "Backend engineer with 6 years of experience building data platforms.",
+   "skills": [
+    {
+     "group": "Languages",
+     "items": [
+      "Python",
+      "Go",
+      "SQL"
+     ]
+    },
+    {
+     "group": "Cloud",
+     "items": [
+      "AWS",
+      "Kubernetes",
+      "Terraform"
+     ]
+    }
+   ],
+   "experience": [
+    {
+     "company": "Acme Corp",
+     "title": "Senior Backend Engineer",
+     "location": "Berlin",
+     "start": "Mar 2021",
+     "end": "Present",
+     "is_current": true,
+     "bullets": [
+      "Cut p95 API latency by 40% by moving hot reads to Redis",
+      "Led the migration of 30 services from a monolith to Kubernetes",
+      "Mentored 4 engineers and ran the on-call rotation"
+     ]
+    },
+    {
+     "company": "Globex",
+     "title": "Software Engineer",
+     "location": "Munich",
+     "start": "Jan 2018",
+     "end": "Jun 2020",
+     "is_current": false,
+     "bullets": [
+      "Built a Kafka pipeline processing 2M events per day",
+      "Wrote the billing reconciliation service in Go"
+     ]
+    }
+   ],
+   "projects": [
+    {
+     "name": "Open-source rate limiter",
+     "role": "",
+     "tech": [
+      "Go",
+      "Redis"
+     ],
+     "link": "",
+     "bullets": [
+      "Token bucket library with 1.2k GitHub stars"
+     ]
+    }
+   ],
+   "education": [
+    {
+     "school": "TU Munich",
+     "degree": "MSc",
+     "field": "Computer Science",
+     "start": "2016",
+     "end": "2018",
+     "details": ""
+    }
+   ],
+   "certifications": [],
+   "achievements": [],
+   "other": [],
+   "parse_warnings": []
+  },
+  "has_ai_profile": true,
+  "has_text": true
+ },
+ "text": {
+  "id": 1,
+  "raw_text": "--- page 1 ---\nJane Doe\njane.doe@example.com · +1 555 0100 · Berlin\nSUMMARY\nBackend engineer with 6 years of experience building data platforms.\nEXPERIENCE\nSenior Backend Engineer — Acme Corp, Berlin Mar 2021 – Present\n• Cut p95 API latency by 40% by moving hot reads to Redis\n• Led the migration of 30 services from a monolith to Kubernetes\n• Mentored 4 engineers and ran the on-call rotation\nSoftware Engineer — Globex, Munich Jan 2018 – Jun 2020\n• Built a Kafka pipeline processing 2M events per day\n• Wrote the billing reconciliation service in Go\nPROJECTS\nOpen-source rate limiter (Go, Redis) — token bucket library with 1.2k GitHub stars\nSKILLS\nLanguages: Python, Go, SQL\nCloud: AWS, Kubernetes, Terraform\nEDUCATION\nTU Munich — MSc Computer Science, 2016 – 2018",
+  "extraction_method": "text",
+  "pages": 1
+ },
+ "intelligence": {
+  "resume_id": 1,
+  "resume_name": "Resume 1",
+  "skills": [
+   {
+    "name": "Go",
+    "category": "Languages",
+    "listed": true,
+    "used_in": [
+     "Open-source rate limiter"
+    ],
+    "sources": [
+     {
+      "section": "Skills",
+      "label": "Languages",
+      "line": 13,
+      "status": "verified"
+     },
+     {
+      "section": "Projects",
+      "label": "Open-source rate limiter",
+      "line": 15,
+      "status": "verified"
+     }
+    ],
+    "aliases": [],
+    "evidence_count": 1,
+    "confidence": "high",
+    "confidence_reason": "Listed as a skill and used in 1 role/project(s)."
+   },
+   {
+    "name": "Kubernetes",
+    "category": "Orchestration",
+    "listed": true,
+    "used_in": [
+     "Senior Backend Engineer at Acme Corp"
+    ],
+    "sources": [
+     {
+      "section": "Skills",
+      "label": "Cloud",
+      "line": 9,
+      "status": "verified"
+     },
+     {
+      "section": "Experience",
+      "label": "Senior Backend Engineer at Acme Corp",
+      "line": 7,
+      "status": "partial"
+     }
+    ],
+    "aliases": [],
+    "evidence_count": 1,
+    "confidence": "high",
+    "confidence_reason": "Listed as a skill and used in 1 role/project(s)."
+   },
+   {
+    "name": "Redis",
+    "category": "Cache",
+    "listed": false,
+    "used_in": [
+     "Senior Backend Engineer at Acme Corp",
+     "Open-source rate limiter"
+    ],
+    "sources": [
+     {
+      "section": "Experience",
+      "label": "Senior Backend Engineer at Acme Corp",
+      "line": 7,
+      "status": "partial"
+     },
+     {
+      "section": "Projects",
+      "label": "Open-source rate limiter",
+      "line": 15,
+      "status": "verified"
+     }
+    ],
+    "aliases": [],
+    "evidence_count": 2,
+    "confidence": "medium",
+    "confidence_reason": "Used in a role or project but not listed under skills."
+   },
+   {
+    "name": "Apache Kafka",
+    "category": "Streaming",
+    "listed": false,
+    "used_in": [
+     "Software Engineer at Globex"
+    ],
+    "sources": [
+     {
+      "section": "Experience",
+      "label": "Software Engineer at Globex",
+      "line": 11,
+      "status": "partial"
+     }
+    ],
+    "aliases": [],
+    "evidence_count": 1,
+    "confidence": "medium",
+    "confidence_reason": "Used in a role or project but not listed under skills."
+   },
+   {
+    "name": "AWS",
+    "category": "Cloud",
+    "listed": true,
+    "used_in": [],
+    "sources": [
+     {
+      "section": "Skills",
+      "label": "Cloud",
+      "line": 18,
+      "status": "verified"
+     }
+    ],
+    "aliases": [],
+    "evidence_count": 0,
+    "confidence": "low",
+    "confidence_reason": "Listed under skills only; no role or project shows it in use."
+   },
+   {
+    "name": "Python",
+    "category": "Languages",
+    "listed": true,
+    "used_in": [],
+    "sources": [
+     {
+      "section": "Skills",
+      "label": "Languages",
+      "line": 17,
+      "status": "verified"
+     }
+    ],
+    "aliases": [],
+    "evidence_count": 0,
+    "confidence": "low",
+    "confidence_reason": "Listed under skills only; no role or project shows it in use."
+   },
+   {
+    "name": "SQL",
+    "category": "Languages",
+    "listed": true,
+    "used_in": [],
+    "sources": [
+     {
+      "section": "Skills",
+      "label": "Languages",
+      "line": 17,
+      "status": "verified"
+     }
+    ],
+    "aliases": [],
+    "evidence_count": 0,
+    "confidence": "low",
+    "confidence_reason": "Listed under skills only; no role or project shows it in use."
+   },
+   {
+    "name": "Terraform",
+    "category": "Infrastructure as code",
+    "listed": true,
+    "used_in": [],
+    "sources": [
+     {
+      "section": "Skills",
+      "label": "Cloud",
+      "line": 18,
+      "status": "verified"
+     }
+    ],
+    "aliases": [],
+    "evidence_count": 0,
+    "confidence": "low",
+    "confidence_reason": "Listed under skills only; no role or project shows it in use."
+   }
+  ],
+  "projects": [
+   {
+    "name": "Open-source rate limiter",
+    "tech": [
+     "Go",
+     "Redis"
+    ],
+    "bullets": 1,
+    "has_metrics": true,
+    "source": {
+     "status": "verified",
+     "line": 15
+    },
+    "clarifications": 1
+   }
+  ],
+  "experience": {
+   "roles": 2,
+   "companies": [
+    "Acme Corp",
+    "Globex"
+   ],
+   "dated_roles": 2,
+   "total_months": 99,
+   "years": 8.2,
+   "gaps": [
+    {
+     "from": "2020-06",
+     "to": "2021-03",
+     "months": 8
+    }
+   ],
+   "current": [
+    "Senior Backend Engineer at Acme Corp"
+   ]
+  },
+  "relationships": [
+   {
+    "a": "Go",
+    "b": "Redis",
+    "contexts": [
+     "Open-source rate limiter"
+    ],
+    "strength": 1
+   },
+   {
+    "a": "Kubernetes",
+    "b": "Redis",
+    "contexts": [
+     "Senior Backend Engineer at Acme Corp"
+    ],
+    "strength": 1
+   }
+  ],
+  "claims": [
+   {
+    "kind": "achievement",
+    "section": "Experience",
+    "label": "Senior Backend Engineer at Acme Corp",
+    "text": "Cut p95 API latency by 40% by moving hot reads to Redis",
+    "has_metric": true,
+    "source": {
+     "status": "verified",
+     "line": 8
+    }
+   },
+   {
+    "kind": "achievement",
+    "section": "Experience",
+    "label": "Senior Backend Engineer at Acme Corp",
+    "text": "Led the migration of 30 services from a monolith to Kubernetes",
+    "has_metric": true,
+    "source": {
+     "status": "verified",
+     "line": 9
+    }
+   },
+   {
+    "kind": "responsibility",
+    "section": "Experience",
+    "label": "Senior Backend Engineer at Acme Corp",
+    "text": "Mentored 4 engineers and ran the on-call rotation",
+    "has_metric": false,
+    "source": {
+     "status": "verified",
+     "line": 10
+    }
+   },
+   {
+    "kind": "achievement",
+    "section": "Experience",
+    "label": "Software Engineer at Globex",
+    "text": "Built a Kafka pipeline processing 2M events per day",
+    "has_metric": true,
+    "source": {
+     "status": "verified",
+     "line": 12
+    }
+   },
+   {
+    "kind": "responsibility",
+    "section": "Experience",
+    "label": "Software Engineer at Globex",
+    "text": "Wrote the billing reconciliation service in Go",
+    "has_metric": false,
+    "source": {
+     "status": "verified",
+     "line": 13
+    }
+   },
+   {
+    "kind": "achievement",
+    "section": "Projects",
+    "label": "Open-source rate limiter",
+    "text": "Token bucket library with 1.2k GitHub stars",
+    "has_metric": true,
+    "source": {
+     "status": "verified",
+     "line": 15
+    }
+   }
+  ],
+  "clarifications": [
+   {
+    "kind": "metric_needs_context",
+    "section": "Experience",
+    "label": "Senior Backend Engineer at Acme Corp",
+    "text": "Cut p95 API latency by 40% by moving hot reads to Redis",
+    "why": "A number (40%) without the baseline or how it was measured.",
+    "suggested_question": "How was the 40% in your role as Senior Backend Engineer at Acme Corp measured, and what was the baseline?"
+   },
+   {
+    "kind": "metric_needs_context",
+    "section": "Experience",
+    "label": "Senior Backend Engineer at Acme Corp",
+    "text": "Led the migration of 30 services from a monolith to Kubernetes",
+    "why": "A number (30 services) without the baseline or how it was measured.",
+    "suggested_question": "How was the 30 services in your role as Senior Backend Engineer at Acme Corp measured, and what was the baseline?"
+   },
+   {
+    "kind": "metric_needs_context",
+    "section": "Experience",
+    "label": "Software Engineer at Globex",
+    "text": "Built a Kafka pipeline processing 2M events per day",
+    "why": "A number (2M) without the baseline or how it was measured.",
+    "suggested_question": "How was the 2M in your role as Software Engineer at Globex measured, and what was the baseline?"
+   },
+   {
+    "kind": "metric_needs_context",
+    "section": "Projects",
+    "label": "Open-source rate limiter",
+    "text": "Token bucket library with 1.2k GitHub stars",
+    "why": "A number (1.2k) without the baseline or how it was measured.",
+    "suggested_question": "How was the 1.2k in the Open-source rate limiter project measured, and what was the baseline?"
+   },
+   {
+    "kind": "listed_skill_without_evidence",
+    "section": "Skills",
+    "label": "AWS",
+    "text": "AWS",
+    "why": "Listed as a skill, but no role or project shows it in use.",
+    "suggested_question": "Where have you used AWS in practice, and what did you build with it?"
+   },
+   {
+    "kind": "listed_skill_without_evidence",
+    "section": "Skills",
+    "label": "Python",
+    "text": "Python",
+    "why": "Listed as a skill, but no role or project shows it in use.",
+    "suggested_question": "Where have you used Python in practice, and what did you build with it?"
+   },
+   {
+    "kind": "listed_skill_without_evidence",
+    "section": "Skills",
+    "label": "SQL",
+    "text": "SQL",
+    "why": "Listed as a skill, but no role or project shows it in use.",
+    "suggested_question": "Where have you used SQL in practice, and what did you build with it?"
+   },
+   {
+    "kind": "listed_skill_without_evidence",
+    "section": "Skills",
+    "label": "Terraform",
+    "text": "Terraform",
+    "why": "Listed as a skill, but no role or project shows it in use.",
+    "suggested_question": "Where have you used Terraform in practice, and what did you build with it?"
+   },
+   {
+    "kind": "timeline_gap",
+    "section": "Experience",
+    "label": "2020-06 → 2021-03",
+    "text": "About 8 months between roles",
+    "why": "A gap between roles; interviewers often ask about it.",
+    "suggested_question": "What did you focus on between those roles?"
+   }
+  ],
+  "extraction": {
+   "checked": 11,
+   "verified": 11,
+   "partial": 0,
+   "not_found": 0,
+   "unknown": 0,
+   "score": 1.0,
+   "confidence": "high",
+   "not_found_examples": []
+  },
+  "injection_warnings": [],
+  "suggested_questions": [
+   {
+    "text": "How did you keep the Redis cache in your role as Senior Backend Engineer at Acme Corp consistent with the source of truth, and what happened when it was unavailable?",
+    "rubric": "Invalidation strategy, TTLs, cache-aside, stampede protection, graceful degradation.",
+    "topic": "Redis",
+    "difficulty": "hard",
+    "kind": "failure_handling",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Experience",
+     "label": "Senior Backend Engineer at Acme Corp",
+     "excerpt": "Senior Backend Engineer at Acme Corp, Berlin, Mar 2021 – Present: Cut p95 API latency by 40% by moving hot reads to Redis • Led the migration of 30 services from a monolith to Kubernetes • Mentored 4 engineers and ran the on-call rotation"
+    }
+   },
+   {
+    "text": "What problem did Open-source rate limiter solve, who used it, and what did success look like?",
+    "rubric": "Clear problem statement, users, success criteria.",
+    "topic": "Project deep-dive",
+    "difficulty": "easy",
+    "kind": "project_problem",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Projects",
+     "label": "Open-source rate limiter",
+     "excerpt": "Open-source rate limiter: Token bucket library with 1.2k GitHub stars"
+    }
+   },
+   {
+    "text": "How was the 40% in your role as Senior Backend Engineer at Acme Corp measured, and what was the baseline?",
+    "rubric": "A specific, first-person account: their own actions, how results were measured, what they learned.",
+    "topic": "Resume clarification",
+    "difficulty": "medium",
+    "kind": "metric_needs_context",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Experience",
+     "label": "Senior Backend Engineer at Acme Corp",
+     "excerpt": "Cut p95 API latency by 40% by moving hot reads to Redis"
+    }
+   },
+   {
+    "text": "How were deployments, health checks and autoscaling configured on Kubernetes in your role as Senior Backend Engineer at Acme Corp?",
+    "rubric": "Rolling updates, readiness/liveness probes, resource requests/limits, HPA, rollback.",
+    "topic": "Kubernetes",
+    "difficulty": "hard",
+    "kind": "deployment",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Experience",
+     "label": "Senior Backend Engineer at Acme Corp",
+     "excerpt": "Senior Backend Engineer at Acme Corp, Berlin, Mar 2021 – Present: Cut p95 API latency by 40% by moving hot reads to Redis • Led the migration of 30 services from a monolith to Kubernetes • Mentored 4 engineers and ran the on-call rotation"
+    }
+   },
+   {
+    "text": "Walk me through the architecture of Open-source rate limiter (built with Go, Redis): the main components and how data flows between them.",
+    "rubric": "Components, responsibilities, data flow, the candidate's own part.",
+    "topic": "Project deep-dive",
+    "difficulty": "medium",
+    "kind": "project_architecture",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Projects",
+     "label": "Open-source rate limiter",
+     "excerpt": "Open-source rate limiter: Token bucket library with 1.2k GitHub stars"
+    }
+   },
+   {
+    "text": "How was the 1.2k in the Open-source rate limiter project measured, and what was the baseline?",
+    "rubric": "A specific, first-person account: their own actions, how results were measured, what they learned.",
+    "topic": "Resume clarification",
+    "difficulty": "medium",
+    "kind": "metric_needs_context",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Projects",
+     "label": "Open-source rate limiter",
+     "excerpt": "Token bucket library with 1.2k GitHub stars"
+    }
+   },
+   {
+    "text": "How did you plan and verify the migration in your role as Senior Backend Engineer at Acme Corp so that nothing was lost or broken?",
+    "rubric": "Dry runs, dual-writes or shadow reads, reconciliation, rollback plan, cut-over.",
+    "topic": "Migration",
+    "difficulty": "medium",
+    "kind": "failure_handling",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Experience",
+     "label": "Senior Backend Engineer at Acme Corp",
+     "excerpt": "Senior Backend Engineer at Acme Corp, Berlin, Mar 2021 – Present: Cut p95 API latency by 40% by moving hot reads to Redis • Led the migration of 30 services from a monolith to Kubernetes • Mentored 4 engineers and ran the on-call rotation"
+    }
+   },
+   {
+    "text": "Which technology or design decision in Open-source rate limiter would you defend most strongly, and what alternatives did you reject?",
+    "rubric": "Concrete alternatives, criteria, trade-offs.",
+    "topic": "Project deep-dive",
+    "difficulty": "medium",
+    "kind": "project_decision",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Projects",
+     "label": "Open-source rate limiter",
+     "excerpt": "Open-source rate limiter: Token bucket library with 1.2k GitHub stars"
+    }
+   },
+   {
+    "text": "Where have you used AWS in practice, and what did you build with it?",
+    "rubric": "A specific, first-person account: their own actions, how results were measured, what they learned.",
+    "topic": "Resume clarification",
+    "difficulty": "medium",
+    "kind": "listed_skill_without_evidence",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Skills",
+     "label": "AWS",
+     "excerpt": "AWS"
+    }
+   },
+   {
+    "text": "How did you find the bottleneck behind the optimisation in your role as Senior Backend Engineer at Acme Corp, and how did you prove the improvement?",
+    "rubric": "Profiling/measurement first, the specific change, before/after numbers under comparable load.",
+    "topic": "Performance optimisation",
+    "difficulty": "medium",
+    "kind": "performance_cost",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Experience",
+     "label": "Senior Backend Engineer at Acme Corp",
+     "excerpt": "Senior Backend Engineer at Acme Corp, Berlin, Mar 2021 – Present: Cut p95 API latency by 40% by moving hot reads to Redis • Led the migration of 30 services from a monolith to Kubernetes • Mentored 4 engineers and ran the on-call rotation"
+    }
+   },
+   {
+    "text": "How did you test Open-source rate limiter, and what kind of bug still got through?",
+    "rubric": "Test levels, what was automated, a real escaped defect and the fix.",
+    "topic": "Project deep-dive",
+    "difficulty": "medium",
+    "kind": "project_testing",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Projects",
+     "label": "Open-source rate limiter",
+     "excerpt": "Open-source rate limiter: Token bucket library with 1.2k GitHub stars"
+    }
+   },
+   {
+    "text": "What delivery guarantees did the Kafka consumers in your role as Software Engineer at Globex provide, and how did you handle duplicate or out-of-order messages?",
+    "rubric": "At-least-once vs exactly-once, idempotent processing, offsets and commits, keys and ordering per partition.",
+    "topic": "Apache Kafka",
+    "difficulty": "hard",
+    "kind": "data_integrity",
+    "resume_id": 1,
+    "resume_name": "Resume 1",
+    "claim": {
+     "section": "Experience",
+     "label": "Software Engineer at Globex",
+     "excerpt": "Software Engineer at Globex, Munich, Jan 2018 – Jun 2020: Built a Kafka pipeline processing 2M events per day • Wrote the billing reconciliation service in Go"
+    }
+   }
+  ],
+  "claim_inventory": [
+   {
+    "section": "Experience",
+    "label": "Senior Backend Engineer at Acme Corp"
+   },
+   {
+    "section": "Experience",
+    "label": "Software Engineer at Globex"
+   },
+   {
+    "section": "Projects",
+    "label": "Open-source rate limiter"
+   }
+  ],
+  "notes": [
+   "Built from your saved profile; edit the profile to correct anything and this view updates.",
+   "Clarification areas are things an interviewer may ask about, not judgements about honesty."
+  ],
+  "practice_history": [],
+  "unexplored": [
+   {
+    "section": "Experience",
+    "label": "Senior Backend Engineer at Acme Corp"
+   },
+   {
+    "section": "Experience",
+    "label": "Software Engineer at Globex"
+   },
+   {
+    "section": "Projects",
+    "label": "Open-source rate limiter"
+   }
+  ]
+ },
+ "not_found": {
+  "error": {
+   "code": "not_found",
+   "message": "Resume not found."
+  }
+ },
+ "saved": {
+  "id": 1,
+  "name": "Resume 1",
+  "original_filename": "jane-cv.pdf",
+  "size_bytes": 2128,
+  "pages": 1,
+  "status": "ready",
+  "stage_detail": null,
+  "error_code": null,
+  "error_message": null,
+  "extraction_method": "text",
+  "consent_cloud": null,
+  "revision": 2,
+  "has_profile": true,
+  "skills_preview": [
+   "Python",
+   "Go",
+   "SQL",
+   "AWS",
+   "Kubernetes",
+   "Terraform"
+  ],
+  "warnings": 0,
+  "profile": {
+   "contact": {
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "phone": "+1 555 0100",
+    "location": "Berlin",
+    "links": []
+   },
+   "summary": "Backend engineer who loves fast APIs.",
+   "skills": [
+    {
+     "group": "Languages",
+     "items": [
+      "Python",
+      "Go",
+      "SQL"
+     ]
+    },
+    {
+     "group": "Cloud",
+     "items": [
+      "AWS",
+      "Kubernetes",
+      "Terraform"
+     ]
+    }
+   ],
+   "experience": [
+    {
+     "company": "Acme Corp",
+     "title": "Senior Backend Engineer",
+     "location": "Berlin",
+     "start": "Mar 2021",
+     "end": "Present",
+     "is_current": true,
+     "bullets": [
+      "Cut p95 API latency by 40% by moving hot reads to Redis",
+      "Led the migration of 30 services from a monolith to Kubernetes",
+      "Mentored 4 engineers and ran the on-call rotation"
+     ]
+    },
+    {
+     "company": "Globex",
+     "title": "Software Engineer",
+     "location": "Munich",
+     "start": "Jan 2018",
+     "end": "Jun 2020",
+     "is_current": false,
+     "bullets": [
+      "Built a Kafka pipeline processing 2M events per day",
+      "Wrote the billing reconciliation service in Go"
+     ]
+    }
+   ],
+   "projects": [
+    {
+     "name": "Open-source rate limiter",
+     "role": "",
+     "tech": [
+      "Go",
+      "Redis"
+     ],
+     "link": "",
+     "bullets": [
+      "Token bucket library with 1.2k GitHub stars"
+     ]
+    }
+   ],
+   "education": [
+    {
+     "school": "TU Munich",
+     "degree": "MSc",
+     "field": "Computer Science",
+     "start": "2016",
+     "end": "2018",
+     "details": ""
+    }
+   ],
+   "certifications": [],
+   "achievements": [],
+   "other": [],
+   "parse_warnings": []
+  },
+  "has_ai_profile": true,
+  "has_text": true
+ },
+ "stale": {
+  "error": {
+   "code": "resume_changed",
+   "message": "This resume was changed in another tab or by the AI. Reload to see the latest version.",
+   "revision": 2
+  }
+ },
+ "renamed": {
+  "id": 1,
+  "name": "Backend CV",
+  "original_filename": "jane-cv.pdf",
+  "size_bytes": 2128,
+  "pages": 1,
+  "status": "ready",
+  "stage_detail": null,
+  "error_code": null,
+  "error_message": null,
+  "extraction_method": "text",
+  "consent_cloud": null,
+  "revision": 3,
+  "has_profile": true,
+  "skills_preview": [
+   "Python",
+   "Go",
+   "SQL",
+   "AWS",
+   "Kubernetes",
+   "Terraform"
+  ],
+  "warnings": 0,
+  "profile": {
+   "contact": {
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "phone": "+1 555 0100",
+    "location": "Berlin",
+    "links": []
+   },
+   "summary": "Backend engineer who loves fast APIs.",
+   "skills": [
+    {
+     "group": "Languages",
+     "items": [
+      "Python",
+      "Go",
+      "SQL"
+     ]
+    },
+    {
+     "group": "Cloud",
+     "items": [
+      "AWS",
+      "Kubernetes",
+      "Terraform"
+     ]
+    }
+   ],
+   "experience": [
+    {
+     "company": "Acme Corp",
+     "title": "Senior Backend Engineer",
+     "location": "Berlin",
+     "start": "Mar 2021",
+     "end": "Present",
+     "is_current": true,
+     "bullets": [
+      "Cut p95 API latency by 40% by moving hot reads to Redis",
+      "Led the migration of 30 services from a monolith to Kubernetes",
+      "Mentored 4 engineers and ran the on-call rotation"
+     ]
+    },
+    {
+     "company": "Globex",
+     "title": "Software Engineer",
+     "location": "Munich",
+     "start": "Jan 2018",
+     "end": "Jun 2020",
+     "is_current": false,
+     "bullets": [
+      "Built a Kafka pipeline processing 2M events per day",
+      "Wrote the billing reconciliation service in Go"
+     ]
+    }
+   ],
+   "projects": [
+    {
+     "name": "Open-source rate limiter",
+     "role": "",
+     "tech": [
+      "Go",
+      "Redis"
+     ],
+     "link": "",
+     "bullets": [
+      "Token bucket library with 1.2k GitHub stars"
+     ]
+    }
+   ],
+   "education": [
+    {
+     "school": "TU Munich",
+     "degree": "MSc",
+     "field": "Computer Science",
+     "start": "2016",
+     "end": "2018",
+     "details": ""
+    }
+   ],
+   "certifications": [],
+   "achievements": [],
+   "other": [],
+   "parse_warnings": []
+  },
+  "has_ai_profile": true,
+  "has_text": true
+ },
+ "reparsing": {
+  "id": 1,
+  "name": "Backend CV",
+  "original_filename": "jane-cv.pdf",
+  "size_bytes": 2128,
+  "pages": 1,
+  "status": "extracting",
+  "stage_detail": "Reading text",
+  "error_code": null,
+  "error_message": null,
+  "extraction_method": "text",
+  "consent_cloud": null,
+  "revision": 3,
+  "has_profile": true,
+  "skills_preview": [
+   "Python",
+   "Go",
+   "SQL",
+   "AWS",
+   "Kubernetes",
+   "Terraform"
+  ],
+  "warnings": 0,
+  "profile": {
+   "contact": {
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "phone": "+1 555 0100",
+    "location": "Berlin",
+    "links": []
+   },
+   "summary": "Backend engineer who loves fast APIs.",
+   "skills": [
+    {
+     "group": "Languages",
+     "items": [
+      "Python",
+      "Go",
+      "SQL"
+     ]
+    },
+    {
+     "group": "Cloud",
+     "items": [
+      "AWS",
+      "Kubernetes",
+      "Terraform"
+     ]
+    }
+   ],
+   "experience": [
+    {
+     "company": "Acme Corp",
+     "title": "Senior Backend Engineer",
+     "location": "Berlin",
+     "start": "Mar 2021",
+     "end": "Present",
+     "is_current": true,
+     "bullets": [
+      "Cut p95 API latency by 40% by moving hot reads to Redis",
+      "Led the migration of 30 services from a monolith to Kubernetes",
+      "Mentored 4 engineers and ran the on-call rotation"
+     ]
+    },
+    {
+     "company": "Globex",
+     "title": "Software Engineer",
+     "location": "Munich",
+     "start": "Jan 2018",
+     "end": "Jun 2020",
+     "is_current": false,
+     "bullets": [
+      "Built a Kafka pipeline processing 2M events per day",
+      "Wrote the billing reconciliation service in Go"
+     ]
+    }
+   ],
+   "projects": [
+    {
+     "name": "Open-source rate limiter",
+     "role": "",
+     "tech": [
+      "Go",
+      "Redis"
+     ],
+     "link": "",
+     "bullets": [
+      "Token bucket library with 1.2k GitHub stars"
+     ]
+    }
+   ],
+   "education": [
+    {
+     "school": "TU Munich",
+     "degree": "MSc",
+     "field": "Computer Science",
+     "start": "2016",
+     "end": "2018",
+     "details": ""
+    }
+   ],
+   "certifications": [],
+   "achievements": [],
+   "other": [],
+   "parse_warnings": []
+  },
+  "has_ai_profile": true,
+  "has_text": true
+ },
+ "reparsed": {
+  "id": 1,
+  "name": "Backend CV",
+  "original_filename": "jane-cv.pdf",
+  "size_bytes": 2128,
+  "pages": 1,
+  "status": "ready",
+  "stage_detail": null,
+  "error_code": null,
+  "error_message": null,
+  "extraction_method": "text",
+  "consent_cloud": null,
+  "revision": 4,
+  "has_profile": true,
+  "skills_preview": [
+   "Python",
+   "Go",
+   "SQL",
+   "AWS",
+   "Kubernetes",
+   "Terraform"
+  ],
+  "warnings": 0,
+  "profile": {
+   "contact": {
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "phone": "+1 555 0100",
+    "location": "Berlin",
+    "links": []
+   },
+   "summary": "Backend engineer with 6 years of experience building data platforms.",
+   "skills": [
+    {
+     "group": "Languages",
+     "items": [
+      "Python",
+      "Go",
+      "SQL"
+     ]
+    },
+    {
+     "group": "Cloud",
+     "items": [
+      "AWS",
+      "Kubernetes",
+      "Terraform"
+     ]
+    }
+   ],
+   "experience": [
+    {
+     "company": "Acme Corp",
+     "title": "Senior Backend Engineer",
+     "location": "Berlin",
+     "start": "Mar 2021",
+     "end": "Present",
+     "is_current": true,
+     "bullets": [
+      "Cut p95 API latency by 40% by moving hot reads to Redis",
+      "Led the migration of 30 services from a monolith to Kubernetes",
+      "Mentored 4 engineers and ran the on-call rotation"
+     ]
+    },
+    {
+     "company": "Globex",
+     "title": "Software Engineer",
+     "location": "Munich",
+     "start": "Jan 2018",
+     "end": "Jun 2020",
+     "is_current": false,
+     "bullets": [
+      "Built a Kafka pipeline processing 2M events per day",
+      "Wrote the billing reconciliation service in Go"
+     ]
+    }
+   ],
+   "projects": [
+    {
+     "name": "Open-source rate limiter",
+     "role": "",
+     "tech": [
+      "Go",
+      "Redis"
+     ],
+     "link": "",
+     "bullets": [
+      "Token bucket library with 1.2k GitHub stars"
+     ]
+    }
+   ],
+   "education": [
+    {
+     "school": "TU Munich",
+     "degree": "MSc",
+     "field": "Computer Science",
+     "start": "2016",
+     "end": "2018",
+     "details": ""
+    }
+   ],
+   "certifications": [],
+   "achievements": [],
+   "other": [],
+   "parse_warnings": []
+  },
+  "has_ai_profile": true,
+  "has_text": true
+ },
+ "failed": {
+  "id": 2,
+  "name": "Resume 1",
+  "original_filename": "jane-cv.pdf",
+  "size_bytes": 2128,
+  "pages": 1,
+  "status": "failed",
+  "stage_detail": null,
+  "error_code": "structure_failed",
+  "error_message": "The AI could not organise this resume: The model's reply could not be understood twice in a row. Your answer is saved; use Retry. Your file and its text are kept – press Try again, or fill it in yourself.",
+  "extraction_method": "text",
+  "consent_cloud": null,
+  "revision": 0,
+  "has_profile": false,
+  "skills_preview": [],
+  "warnings": 0,
+  "profile": null,
+  "has_ai_profile": false,
+  "has_text": true
+ },
+ "deleted": {
+  "deleted": 2
+ }
+}

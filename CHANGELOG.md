@@ -5,6 +5,13 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Added
+- Page tests for the Resume detail page (#24), on responses recorded from the backend (`backend/tests/test_report_fixture.py`
+  writes `resume-detail-api.json` and fails if the resume API changes shape): what the page shows from the API, loading and
+  failed-load states, edit/discard/save with the revision, a save refused by another tab, the unsaved-changes guard, rename,
+  delete, re-organise with AI with live progress, a resume the AI could not organise, Practice, and the Candidate profile,
+  Preview and Original text tabs.
+
 ## [2.0.2] - 2026-11-21
 
 Easier install: the release zip runs without Node.js. No database, setting or score changes; upgrading needs no action.
