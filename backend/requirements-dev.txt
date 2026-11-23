@@ -1,5 +1,5 @@
 -r requirements.txt
-pytest>=9.0.3,<10       # 9.0.3+: PYSEC-2026-1845 (dev only)
+pytest>=9.2.0,<10       # 9.0.3+: PYSEC-2026-1845 (dev only)
 pypdf>=5.0,<7.0
 ruff==0.8.6              # lint (bug-finding rules only, see ruff.toml); pinned so CI and laptops agree
 pytest-cov>=5,<8         # coverage: python -m pytest backend --cov=backend/app
