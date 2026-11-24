@@ -8,6 +8,11 @@ updates:
     # choose the installed versions (regenerate them as their header says); raising a minimum here would also drop Python 3.10
     # whenever a package's newest release needs 3.11 (python-multipart 0.0.34 did).
     versioning-strategy: increase-if-necessary
+    ignore:
+      # faster-whisper 1.2.x calls av.open(metadata_errors=...), which PyAV 17+ rejects (see requirements-stt.txt). CI does not
+      # install the speech packages, so a green check would not catch it. Remove when faster-whisper supports PyAV 17.
+      - dependency-name: av
+        versions: [">=17"]
     open-pull-requests-limit: 5
     labels: [dependencies, backend]
     groups:
