@@ -12,6 +12,12 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
   the unsaved-changes guard, rename, delete, re-organise with AI with live progress, a resume the AI could not organise,
   Practice, and the Candidate profile, Preview and Original text tabs.
 
+### Changed
+- Development tooling, no visible change: ruff 0.17.6 (lock and pre-commit pin), and microphone errors keep the browser's
+  original error as their `cause` (same messages), which ESLint 10's recommended rules require. Dependabot now changes a version range in
+  `backend/requirements*.txt` only when a new release falls outside it, so it no longer proposes raising a minimum that would
+  drop Python 3.10.
+
 ## [2.0.2] - 2026-11-21
 
 Easier install: the release zip runs without Node.js. No database, setting or score changes; upgrading needs no action.

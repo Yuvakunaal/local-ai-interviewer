@@ -4,6 +4,10 @@ updates:
   - package-ecosystem: pip
     directory: /backend
     schedule: {interval: weekly, day: monday}
+    # Change a range in requirements*.txt only when a new version falls outside it. The hash-locked requirements*.lock files
+    # choose the installed versions (regenerate them as their header says); raising a minimum here would also drop Python 3.10
+    # whenever a package's newest release needs 3.11 (python-multipart 0.0.34 did).
+    versioning-strategy: increase-if-necessary
     open-pull-requests-limit: 5
     labels: [dependencies, backend]
     groups:
