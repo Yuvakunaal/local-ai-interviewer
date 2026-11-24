@@ -3,7 +3,7 @@
 # Hooks are limited to fast checks with a clear benefit; formatting is not enforced.
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.6                     # keep equal to the ruff pin in backend/requirements-dev.txt
+    rev: v0.17.6                    # keep equal to the ruff pin in backend/requirements-dev.txt
     hooks:
       - id: ruff
   - repo: https://github.com/pre-commit/pre-commit-hooks

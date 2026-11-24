@@ -13,9 +13,9 @@ export class MicRecorder {
       this.stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
     } catch (e) {
       const name = (e as Error).name;
-      if (name === "NotAllowedError") throw new Error("Microphone permission was denied. Allow it in Chrome's address-bar site settings and try again.");
-      if (name === "NotFoundError") throw new Error("No microphone was found.");
-      throw new Error(`Could not open the microphone (${name}).`);
+      if (name === "NotAllowedError") throw new Error("Microphone permission was denied. Allow it in Chrome's address-bar site settings and try again.", { cause: e });
+      if (name === "NotFoundError") throw new Error("No microphone was found.", { cause: e });
+      throw new Error(`Could not open the microphone (${name}).`, { cause: e });
     }
     this.chunks = [];
     const mime = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4"].find((m) => MediaRecorder.isTypeSupported(m));
